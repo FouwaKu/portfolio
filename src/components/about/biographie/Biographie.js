@@ -18,7 +18,7 @@ const Biographie = (props) =>{
                     <div className="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                         <h3>Full Stack Web Dev &amp; Graphic Designer</h3>
                         <p className="fst-italic">
-                            Let's collaborate to bring your vision to life and elevate your digital presence. 
+                            Let's collaborate to bring your vision to life and elevate your digital presence.
                         </p>
                         <div className="row">
                         <div className="col-lg-6">
@@ -37,8 +37,8 @@ const Biographie = (props) =>{
                         </div>
                         <p>
                             My holistic approach to design and development centers around effective communication, client collaboration,
-                             and a relentless pursuit of quality. By combining the artistry of graphic design with the technical prowess 
-                             of web development, I strive to create impactful, holistic digital experiences that captivate audineces and 
+                             and a relentless pursuit of quality. By combining the artistry of graphic design with the technical prowess
+                             of web development, I strive to create impactful, holistic digital experiences that captivate audineces and
                              drive tangible results.
                         </p>
                     </div>

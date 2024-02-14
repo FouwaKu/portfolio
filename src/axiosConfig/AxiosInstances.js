@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance1 = axios.create({
-    baseURL: 'https://portfolio-cdd5e-default-rtdb.firebaseio.com/',
+    baseURL: 'https://portfolio-fc096-default-rtdb.firebaseio.com/',
 });
 
 export const axiosInstance2 = axios.create({
@@ -13,7 +13,7 @@ export const setAxiosParams = (token) => {
         config.params.auth = token;
         return config;
     });
-}  
+}
 
 
 

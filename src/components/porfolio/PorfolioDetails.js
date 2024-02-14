@@ -21,9 +21,9 @@ const PorfolioDetails = (props) =>{
       if(project && !project.length)
         navigate('/');
     },[]);
-   
+
     return (
-        
+
         <div id="portfolio-details" className="portfolio-details">
             <div className="container">
 
@@ -31,7 +31,7 @@ const PorfolioDetails = (props) =>{
 
                 <div className="col-lg-8">
                     <h2 className="portfolio-title">Portfolio Details</h2>
-                    
+
                     <div className="portfolio-details-slider swiper">
                         <Swiper
                             speed={600}
@@ -45,10 +45,10 @@ const PorfolioDetails = (props) =>{
                                     <img width='400px' height='400px' src={img} alt="" />
                                 </SwiperSlide>
                            ))}
-                            
+
                             <div class="swiper-pagination"></div>
                         </Swiper>
-                    
+
                     </div>
 
                 </div>
@@ -57,15 +57,15 @@ const PorfolioDetails = (props) =>{
                     <h3>Project information</h3>
                     <ul>
                     <li><strong>Category</strong>: {project[0] && project[0].categoryName}</li>
-                    {project[0] &&  
+                    {project[0] &&
                         <li><strong>Client</strong>: {project[0] && project[0].client}</li>
                     }
-                    
+
                     <li><strong>Project date</strong>: {project[0] && project[0].date}</li>
-                    {project[0] && 
-                        <li><strong>Project URL</strong>: <a href={project[0] && project[0].url}>Visit</a></li>
+                    {project[0] &&
+                        <li><strong>Project URL</strong>: {project[0] && project[0].url && <a href={project[0].url}>Visit</a>}</li>
                     }
-                    
+
                     </ul>
 
                     <p>

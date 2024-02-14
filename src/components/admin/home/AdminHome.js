@@ -17,14 +17,14 @@ const AdminHome = (props) =>{
               select('.search-bar').classList.toggle('search-bar-show')
             })
         }
-       
+
 
     }, []);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     return (
         <React.Fragment>
-             
+
             <header id="header" className="header fixed-top d-flex align-items-center">
 
                 <div className="d-flex align-items-center justify-content-between">
@@ -58,82 +58,27 @@ const AdminHome = (props) =>{
                         <span className="badge bg-primary badge-number">4</span>
                     </a>
 
-                    <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-     
-                    </ul>
-
                     </li>
 
                     <li className="nav-item dropdown">
 
-                    <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i className="bi bi-chat-left-text"></i>
-                        <span className="badge bg-success badge-number">3</span>
-                    </a>
-
-                    <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
- 
-                    </ul>
+                        <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                            <i className="bi bi-chat-left-text"></i>
+                            <span className="badge bg-success badge-number">3</span>
+                        </a>
 
                     </li>
 
-                    <li className="nav-item dropdown pe-3">
 
-                    <a id="logoutMemu" className="nav-link nav-profile dropdown-toggle d-flex align-items-center pe-0" 
-                    href="#" data-bs-toggle="dropdown">
-                        <img src="#" alt="Profile" className="rounded-circle" />
-                        <span className="d-none d-md-block  ps-2">FouwaKu</span>
-                    </a>
+                    <li className="nav-item pe-3">
 
-                    <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" aria-labelledby="logoutMemu">
-                        <li className="dropdown-header">
-                        <h6>FouwaKu Stael</h6>
-                        <span>Full Stack Web Dev / Designer</span>
-                        </li>
-                        <li>
-                        <hr className="dropdown-divider" />
-                        </li>
+                            <a className="dropdown-item d-flex align-items-center" href="#" onClick={(e)=>{
+                                dispatch(logoutAction(navigate))
+                                }}>
+                                <i className="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
 
-                        <li>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
-                            <i className="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
-                        </li>
-                        <li>
-                        <hr className="dropdown-divider" />
-                        </li>
-
-                        <li>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
-                            <i className="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                        </li>
-                        <li>
-                        <hr className="dropdown-divider" />
-                        </li>
-
-                        <li>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
-                            <i className="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
-                        </a>
-                        </li>
-                        <li>
-                        <hr className="dropdown-divider" />
-                        </li>
-
-                        <li>
-                        <a className="dropdown-item d-flex align-items-center" href="#" onClick={(e)=>{
-                            dispatch(logoutAction(navigate))
-                            }}>
-                            <i className="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
-                        </a>
-                        </li>
-
-                    </ul>
                     </li>
 
                 </ul>
@@ -141,7 +86,7 @@ const AdminHome = (props) =>{
 
             </header>
 
-            
+
             <aside id="sidebar" className="sidebar">
 
                 <ul className="sidebar-nav" id="sidebar-nav">
@@ -159,7 +104,7 @@ const AdminHome = (props) =>{
                     <NavLink className="nav-link collapsed" to='/admin/category'>
                         <i className="bi bi-file-earmark-person"></i>
                         <span>Portfolio</span>
-                    </NavLink>      
+                    </NavLink>
                 </li>
 
                 <li className="nav-item">
