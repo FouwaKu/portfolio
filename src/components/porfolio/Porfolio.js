@@ -9,7 +9,7 @@ import Loader from "../loader/Loader";
 import AlertError from "../alerts/AlertError";
 import AlertSuccess from "../alerts/AlertSuccess";
 import { findProjectCategory } from '../../services/PortfolioService';
-import PorfolioDetails from './PorfolioDetails';
+
 
 const Porfolio = (props) =>{
     const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Porfolio = (props) =>{
             });
             return true;
         }
-        return false;        
+        return false;
     };
     const getAllProgects = () =>{
         if(project && !project.length){
@@ -42,16 +42,16 @@ const Porfolio = (props) =>{
             dispatch(getProjects('project.json')).then(response =>{
                 const types = response.type.split('/');
                 const type = types[types.length - 1];
-               
+
                 if(type === 'rejected'){
                     dispatch(setErrorMessage('An error occured. Try again!!!'));
                     dispatch(setSuccessMessage(''));
                 }
-               
+
             });
             return true;
         }
-        return false;  
+        return false;
     }
     const storeElements = ()=>{
         portfolioFiltersRef.current = Array.from(document.querySelectorAll('.filters'));
@@ -72,16 +72,16 @@ const Porfolio = (props) =>{
         });
         return ()=>{
             portfolioLightbox.destroy();
-            
+
         };
-     });   
+     });
      useEffect(()=>{
-        
+
         dispatch(setErrorMessage(''));
         dispatch(setSuccessMessage(''));
         getAllCategories();
         getAllProgects();
-        
+
     }, []);
     const handleFilters = (e) =>{
         const filterData = e.target.getAttribute('data-filter');
@@ -90,25 +90,25 @@ const Porfolio = (props) =>{
         });
         e.target.classList.add('filter-active');
         portfolioItemsRef.current.forEach((item,index)=>{
-            if (filterData === '*') 
+            if (filterData === '*')
                 item.classList.remove('d-none');
             else{
                 if (item.classList.contains(filterData)) {
                     item.classList.remove('d-none');
                 }
-                else 
-                    item.classList.add('d-none'); 
+                else
+                    item.classList.add('d-none');
             }
-            
+
         });
     }
-    
+
     return (
         <section id="portfolio" className="portfolio">
             {errorMessage && <AlertError/>}
             {successMessage && <AlertSuccess />}
-             { showLoading &&  
-                        <Loader />      
+             { showLoading &&
+                        <Loader />
             }
             <div className="container">
 
@@ -120,12 +120,12 @@ const Porfolio = (props) =>{
             <div className="row">
                 <div className="col-lg-12 d-flex justify-content-center">
                 <ul id="portfolio-flters">
-                   
+
                     <li data-filter="*" onClick={e =>{handleFilters(e)}} className="filters filter-active">All</li>
                     {category.map((c, index)=>
                         <li className='filters' onClick={e =>{handleFilters(e)}} data-filter={'filter-' + c.id} key={c.id}>{c.category.toUpperCase()}</li>
                     )}
-                     
+
                 </ul>
                 </div>
             </div>
@@ -148,7 +148,7 @@ const Porfolio = (props) =>{
                         </div>
                     </div>
                     </div>
-                ))}        
+                ))}
 
             </div>
 

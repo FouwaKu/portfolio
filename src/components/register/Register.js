@@ -6,7 +6,7 @@ import Loader from '../loader/Loader';
 import {RegisterModel} from '../../model/RegisterModel';
 import {updateShowLoader, setErrorMessage, setSuccessMessage} from '../../store/reducers/loaderSlice';
 import './Register.css';
-import { logoutAction, signupAuth } from '../../store/reducers/AuthSlice';
+import {  signupAuth } from '../../store/reducers/AuthSlice';
 import { useNavigate } from "react-router-dom";
 import { formatError, runLogoutTimer } from '../../services/SignupService';
 import AlertError from '../alerts/AlertError';
@@ -22,7 +22,7 @@ const Register = (props) => {
     const [registerForm, setRegisterForm] = useState(new RegisterModel());
     const dispatch = useDispatch();
     const showLoading = useSelector(state => state.loader.showLoader);
-    
+
     const errorMessage = useSelector(state => state.loader.errorMessage);
     const successMessage = useSelector(state => state.loader.successMessage);
     const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Register = (props) => {
         dispatch(signupAuth(values)).then(response =>{
             const types = response.type.split('/');
             const type = types[types.length - 1];
-            
+
             if(type === 'fulfilled'){
                 actions.resetForm();
                 dispatch(setErrorMessage(''));
@@ -45,9 +45,9 @@ const Register = (props) => {
                 dispatch(setErrorMessage(message));
                 dispatch(setSuccessMessage(''));
             }
-            
+
         })
-        
+
     }
 
     useEffect(()=>{
@@ -80,30 +80,30 @@ const Register = (props) => {
                             <h5 className="card-title text-center pb-0 fs-4">Create an Account</h5>
                             <p className="text-center small">Enter your personal details to create account</p>
                         </div>
-                        
-                        
-                        <Formik enableReinitialize initialValues={registerForm} 
-                            onSubmit={handleSignUpFormSubmit} 
+
+
+                        <Formik enableReinitialize initialValues={registerForm}
+                            onSubmit={handleSignUpFormSubmit}
                             validationSchema={validationSchema} >
                              {({touched, errors}) => (
                                 <Form className="row g-3 needs-validation">
                                     <div className="col-12">
                                         <label for="email" className="form-label">Your Email</label>
-                                        <Field type="email" name="email" id="email"  className={`form-control 
+                                        <Field type="email" name="email" id="email"  className={`form-control
                                         ${touched.email && errors.email && 'is-invalid'} ${touched.email && !errors.email && 'is-valid'}`  }/>
                                         <ErrorMessage name="email" component="div" className="invalid-feedback"/>
                                     </div>
                                     <div className="col-12">
                                         <label for="password" className="form-label">Password</label>
-                                        <Field type="password" name="password" id="password"  className={`form-control 
-                                        ${touched.password && errors.password && 'is-invalid'} 
+                                        <Field type="password" name="password" id="password"  className={`form-control
+                                        ${touched.password && errors.password && 'is-invalid'}
                                         ${touched.password && !errors.password && 'is-valid'}`  }/>
                                         <ErrorMessage name="password" component="div" className="invalid-feedback"/>
                                     </div>
                                     <div className="col-12">
                                         <label for="confirmPassword" className="form-label">Confirm Password</label>
-                                        <Field type="password" name="confirmPassword" id="confirmPassword"  className={`form-control 
-                                        ${touched.confirmPassword && errors.confirmPassword && 'is-invalid'} 
+                                        <Field type="password" name="confirmPassword" id="confirmPassword"  className={`form-control
+                                        ${touched.confirmPassword && errors.confirmPassword && 'is-invalid'}
                                         ${touched.confirmPassword && !errors.confirmPassword && 'is-valid'}`  }/>
                                         <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback"/>
                                     </div>

@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {axiosInstance1, setAxiosParams} from '../../axiosConfig/AxiosInstances';
 import { updateShowLoader } from './loaderSlice';
-import { findProjectCategory, formatCategories, formatProjects } from '../../services/PortfolioService';
+import {  formatCategories, formatProjects } from '../../services/PortfolioService';
 
 
 const initialState = {
@@ -15,7 +15,7 @@ const portfolioSlice = createSlice({
     initialState : initialState,
     reducers : {
         setProjectCategory : (state, action) => {
-            state.project[action.payload.index].categoryName = action.payload.categoryName; 
+            state.project[action.payload.index].categoryName = action.payload.categoryName;
         },
     },
     extraReducers: (builder) => {
@@ -27,7 +27,7 @@ const portfolioSlice = createSlice({
             state.status = 'success';
         })
         .addCase(createCategory.rejected, (state, action) =>{
-            state.status = 'failed'; 
+            state.status = 'failed';
         })
         .addCase(getCategories.pending, (state ) => {
             state.status = 'peding';
@@ -37,18 +37,18 @@ const portfolioSlice = createSlice({
             state.status = 'success';
         })
         .addCase(getCategories.rejected, (state, action) =>{
-            state.status = 'failed'; 
+            state.status = 'failed';
         })
         .addCase(getProjects.pending, (state ) => {
             state.status = 'peding';
         })
         .addCase(getProjects.fulfilled, (state, action) =>{
-           
+
             state.project = action.payload;
             state.status = 'success';
         })
         .addCase(getProjects.rejected, (state, action) =>{
-            state.status = 'failed'; 
+            state.status = 'failed';
         })
        .addCase(createProject.pending, (state ) => {
             state.status = 'peding';
@@ -58,7 +58,7 @@ const portfolioSlice = createSlice({
             state.status = 'success';
         })
         .addCase(createProject.rejected, (state, action) =>{
-            state.status = 'failed'; 
+            state.status = 'failed';
         })
         .addCase(editCategory.pending, (state ) => {
             state.status = 'peding';
@@ -69,7 +69,7 @@ const portfolioSlice = createSlice({
             state.status = 'success';
         })
         .addCase(editCategory.rejected, (state, action) =>{
-            state.status = 'failed'; 
+            state.status = 'failed';
         })
         .addCase(deleteCategory.pending, (state ) => {
             state.status = 'peding';
@@ -80,7 +80,7 @@ const portfolioSlice = createSlice({
             state.status = 'success';
         })
         .addCase(deleteCategory.rejected, (state, action) =>{
-            state.status = 'failed'; 
+            state.status = 'failed';
         })
         .addCase(deleteProject.pending, (state ) => {
             state.status = 'peding';
@@ -91,14 +91,14 @@ const portfolioSlice = createSlice({
             state.status = 'success';
         })
         .addCase(deleteProject.rejected, (state, action) =>{
-            state.status = 'failed'; 
+            state.status = 'failed';
         })
     },
 });
 
 
 
-export const createCategory = createAsyncThunk( 
+export const createCategory = createAsyncThunk(
     'category/create',
     async (values, {rejectWithValue, dispatch, getState} ) =>{
         const token = getState().auth.auth.idToken;
@@ -110,25 +110,25 @@ export const createCategory = createAsyncThunk(
                 values,
             );
             dispatch(updateShowLoader(false));
-            
+
             return {id: response.data.name, category: values.category };
         } catch (error) {
             dispatch(updateShowLoader(false));
             return rejectWithValue(error.response.data);
         }
-        
-        
+
+
     }
 );
 
-export const deleteCategory = createAsyncThunk( 
+export const deleteCategory = createAsyncThunk(
     'category/delete',
     async (values, {rejectWithValue, dispatch, getState} ) =>{
         const token = getState().auth.auth.idToken;
         setAxiosParams(token);
         const axiosInstance = axiosInstance1;
         try {
-            const response = await axiosInstance.delete(
+             await axiosInstance.delete(
                 `category/${values.id}.json`,
             );
             dispatch(updateShowLoader(false));
@@ -137,35 +137,35 @@ export const deleteCategory = createAsyncThunk(
             dispatch(updateShowLoader(false));
             return rejectWithValue(error.response.data);
         }
-        
-        
+
+
     }
 );
 
-export const editCategory = createAsyncThunk( 
+export const editCategory = createAsyncThunk(
     'category/edit',
     async (values, {rejectWithValue, dispatch, getState} ) =>{
         const token = getState().auth.auth.idToken;
         setAxiosParams(token);
         const axiosInstance = axiosInstance1;
         try {
-            const response = await axiosInstance.put(
+            await axiosInstance.put(
                 `category/${values.id}.json`,
                 values,
             );
             dispatch(updateShowLoader(false));
-            
+
             return values;
         } catch (error) {
             dispatch(updateShowLoader(false));
             return rejectWithValue(error.response.data);
         }
-        
-        
+
+
     }
 );
 
-export const createProject = createAsyncThunk( 
+export const createProject = createAsyncThunk(
     'project/create',
     async (values, {rejectWithValue, dispatch, getState} ) =>{
         const token = getState().auth.auth.idToken;
@@ -177,25 +177,25 @@ export const createProject = createAsyncThunk(
                 values,
             );
             dispatch(updateShowLoader(false));
-            
+
             return {...values, id: response.data.name };
         } catch (error) {
             dispatch(updateShowLoader(false));
             return rejectWithValue(error.response.data);
         }
-        
-        
+
+
     }
 );
 
-export const deleteProject = createAsyncThunk( 
+export const deleteProject = createAsyncThunk(
     'project/delete',
     async (values, {rejectWithValue, dispatch, getState} ) =>{
         const token = getState().auth.auth.idToken;
         setAxiosParams(token);
         const axiosInstance = axiosInstance1;
         try {
-            const response = await axiosInstance.delete(
+            await axiosInstance.delete(
                 `project/${values.id}.json`,
             );
             dispatch(updateShowLoader(false));
@@ -204,12 +204,12 @@ export const deleteProject = createAsyncThunk(
             dispatch(updateShowLoader(false));
             return rejectWithValue(error.response.data);
         }
-        
-        
+
+
     }
 );
 
-export const getCategories = createAsyncThunk( 
+export const getCategories = createAsyncThunk(
     'category/getAll',
     async (topDomain, {rejectWithValue, dispatch, getState}) =>{
         const token = getState().auth.auth.idToken;
@@ -220,18 +220,18 @@ export const getCategories = createAsyncThunk(
                 topDomain,
             );
             dispatch(updateShowLoader(false));
-    
+
             return formatCategories(response.data);
         } catch (error) {
             dispatch(updateShowLoader(false));
             return rejectWithValue(error.response.data);
         }
-        
-        
+
+
     }
 );
 
-export const getProjects = createAsyncThunk( 
+export const getProjects = createAsyncThunk(
     'project/getAll',
     async (topDomain, {rejectWithValue, dispatch, getState}) =>{
         const token = getState().auth.auth.idToken;
@@ -242,14 +242,14 @@ export const getProjects = createAsyncThunk(
                 topDomain,
             );
             dispatch(updateShowLoader(false));
-    
+
             return formatProjects(response.data);
         } catch (error) {
             dispatch(updateShowLoader(false));
             return rejectWithValue(error.response.data);
         }
-        
-        
+
+
     }
 );
 

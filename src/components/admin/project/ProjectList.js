@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import Loader from "../../loader/Loader";
 import InnerLoader from "../../loader/InnerLoader";
 import { updateShowLoader, setErrorMessage, setSuccessMessage } from "../../../store/reducers/loaderSlice";
 import AlertError from "../../alerts/AlertError";
@@ -25,7 +24,7 @@ const ProjectList = (props) =>{
     const categorID = pathname[pathname.length - 1];
     let project = useSelector(state =>getProjectsByCategory(state, categorID));
     const [categoryName, setcategoryName] = useState('');
-    
+
     useEffect(()=>{
         setcategoryName( findProjectCategory(categorID, category)[0].category );
         dispatch(setErrorMessage(''));
@@ -39,21 +38,21 @@ const ProjectList = (props) =>{
                     dispatch(setErrorMessage('An error occured. Try again!!!'));
                     dispatch(setSuccessMessage(''));
                 }
-               
+
             });
-        }  
-       
+        }
+
     }, []);
 
-    
-   
-       
 
-        
+
+
+
+
     const removeProject = (project, e) =>{
         e.stopPropagation();
         dispatch(updateShowLoader(true));
-        
+
         dispatch(deleteProject(project)).then(response =>{
             const types = response.type.split('/');
             const type = types[types.length - 1];
@@ -70,14 +69,14 @@ const ProjectList = (props) =>{
 
     return (
         <React.Fragment>
-        
+
         {errorMessage && <AlertError/>}
         {successMessage && <AlertSuccess />}
         <div className="pagetitle">
             <h1>Project List</h1>
             <hr/>
         </div>
-        <div className="categoryOptions  clearfix">   
+        <div className="categoryOptions  clearfix">
              <NavLink to='/admin/create-project' className='btn btn-secondary float-end'><i className="bi bi-patch-plus"></i> Add Project</NavLink>
         </div>
         <div className="card mt-3">
@@ -98,13 +97,13 @@ const ProjectList = (props) =>{
                     </tr>
                     </thead>
                     <tbody>
-                     { showLoading &&  
+                     { showLoading &&
                      <tr>
                         <td> <InnerLoader />  </td>
-                     </tr>   
+                     </tr>
                     }
                     {project && project.map((pro,i) =>
-                    
+
                         <tr key={i} className="">
                             <th scope="row">{i + 1}</th>
                             <td>{categoryName}</td>
@@ -116,14 +115,14 @@ const ProjectList = (props) =>{
                             <td className="projectDelete"><i className='bi bi-trash-fill text-danger' onClick={(e)=>{removeProject(pro, e)}}></i></td>
                         </tr>
                     )}
-                    
-                    
+
+
                     </tbody>
                 </table>
               </div>
 
             </div>
-        </div> 
+        </div>
     </React.Fragment>
     );
 };
