@@ -62,6 +62,7 @@ const Porfolio = (props) =>{
                 dispatch(setProjectCategory({index: index, categoryName: categoryName[0].category}));
         });
     };
+
      useEffect(()=>{
         storeElements();
         let portfolioLightbox = Glightbox({
