@@ -7,12 +7,13 @@ import Contact from '../contact/Contact';
 import Footer from '../footer/Footer';
 import Services from '../services/Services';
 import Porfolio from '../porfolio/Porfolio';
+import { NavLink } from 'react-router-dom';
 
 
 const Header = (props) => {
-    
+
     useEffect(()=>{
-       
+
         on('click', '.mobile-nav-toggle', function(e) {
             select('#navbar').classList.toggle('navbar-mobile');
             this.classList.toggle('bi-list');
@@ -22,25 +23,25 @@ const Header = (props) => {
             let section = select(this.hash)
             if (section) {
               e.preventDefault()
-        
+
               let navbar = select('#navbar')
               let header = select('#header')
               let sections = select('section', true)
               let navlinks = select('#navbar .nav-link', true)
-        
+
               navlinks.forEach((item) => {
                 item.classList.remove('active')
               })
-        
+
               this.classList.add('active')
-        
+
               if (navbar.classList.contains('navbar-mobile')) {
                 navbar.classList.remove('navbar-mobile')
                 let navbarToggle = select('.mobile-nav-toggle')
                 navbarToggle.classList.toggle('bi-list')
                 navbarToggle.classList.toggle('bi-x')
               }
-        
+
               if (this.hash === '#header') {
                 header.classList.remove('header-top')
                 sections.forEach((item) => {
@@ -48,7 +49,7 @@ const Header = (props) => {
                 })
                 return;
               }
-        
+
               if (!header.classList.contains('header-top')) {
                 header.classList.add('header-top')
                 setTimeout(function() {
@@ -56,7 +57,7 @@ const Header = (props) => {
                     item.classList.remove('section-show')
                   })
                   section.classList.add('section-show')
-        
+
                 }, 350);
               } else {
                 sections.forEach((item) => {
@@ -64,17 +65,17 @@ const Header = (props) => {
                 })
                 section.classList.add('section-show')
               }
-        
+
               scrollto(this.hash)
             }
           }, true);
           return () =>{
-            
+
           }
     }, []);
     return (
         <React.Fragment>
-           
+
             <header id="header">
                 <div className="container">
 
@@ -91,6 +92,7 @@ const Header = (props) => {
                         <li><a className="nav-link" href="#services">Services</a></li>
                         <li><a className="nav-link" href="#portfolio">Portfolio</a></li>
                         <li><a className="nav-link" href="#contact">Contact</a></li>
+                        <li><a className="nav-link" href='/login'>Login</a></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>
                     </nav>
@@ -104,7 +106,7 @@ const Header = (props) => {
 
                 </div>
             </header>
-            
+
               <About/>
               <Resume/>
               <Services/>

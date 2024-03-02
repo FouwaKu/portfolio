@@ -141,7 +141,7 @@ const Porfolio = (props) =>{
                         <div className="portfolio-links">
                             <a href={p.images.split(',')[0]} data-gallery="portfolioGallery" className="portfolio-lightbox" title={p.categoryName}><i className="bx bx-plus"></i></a>
                             <NavLink to='/details' state={{id: p.id }}>
-                                <i class="bx bx-link"></i>
+                                <i className="bx bx-link"></i>
                             </NavLink>
 
 
